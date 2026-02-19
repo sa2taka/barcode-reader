@@ -57,10 +57,15 @@
         で直接ペースト
       </p>
 
-      <div id="preview-container" class="preview" hidden>
-        <canvas id="preview-canvas" class="preview__canvas"></canvas>
-        <div id="scan-line" class="scan-line" aria-hidden="true"></div>
-      </div>
+      <section
+        id="results"
+        class="results"
+        hidden
+        aria-live="polite"
+        aria-label="スキャン結果"
+      >
+        <div id="results-container" class="results__list"></div>
+      </section>
 
       <div id="loading" class="loading" hidden role="status">
         <div class="loading__spinner" aria-hidden="true"></div>
@@ -75,15 +80,10 @@
         aria-live="assertive"
       ></div>
 
-      <section
-        id="results"
-        class="results"
-        hidden
-        aria-live="polite"
-        aria-label="スキャン結果"
-      >
-        <div id="results-container" class="results__list"></div>
-      </section>
+      <div id="preview-container" class="preview" hidden>
+        <canvas id="preview-canvas" class="preview__canvas"></canvas>
+        <div id="scan-line" class="scan-line" aria-hidden="true"></div>
+      </div>
     </main>
     <script type="module" src="/src/main.ts"></script>
   </body>

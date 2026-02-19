@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="画像からバーコードを読み取るWebアプリ。反転・回転バーコードにも対応。"
+    />
+    <title>SCAN // BARCODE READER</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⊟</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main
+      id="drop-zone"
+      class="drop-zone"
+      aria-label="バーコード画像のドロップゾーン"
+    >
+      <div class="drop-zone__grid" aria-hidden="true"></div>
+
+      <header class="header">
+        <h1 class="header__title">
+          <span>SCAN</span>
+          <span class="header__separator">//</span>
+          <span>BARCODE</span>
+        </h1>
+        <p class="header__subtitle">DROP · PASTE · CLICK</p>
+      </header>
+
+      <section class="controls" aria-label="画像入力方法">
+        <button id="btn-clipboard" class="btn btn--primary" type="button">
+          クリップボードから読み取る
+        </button>
+        <label class="btn btn--secondary" for="file-input">
+          ファイルを選択
+        </label>
+        <input
+          id="file-input"
+          type="file"
+          accept="image/*"
+          class="visually-hidden"
+        />
+      </section>
+
+      <p class="paste-hint">
+        <kbd>Ctrl</kbd>+<kbd>V</kbd> / <kbd>⌘</kbd>+<kbd>V</kbd>
+        で直接ペースト
+      </p>
+
+      <div id="preview-container" class="preview" hidden>
+        <canvas id="preview-canvas" class="preview__canvas"></canvas>
+        <div id="scan-line" class="scan-line" aria-hidden="true"></div>
+      </div>
+
+      <div id="loading" class="loading" hidden role="status">
+        <div class="loading__spinner" aria-hidden="true"></div>
+        <span>解析中...</span>
+      </div>
+
+      <div
+        id="error"
+        class="error"
+        hidden
+        role="alert"
+        aria-live="assertive"
+      ></div>
+
+      <section
+        id="results"
+        class="results"
+        hidden
+        aria-live="polite"
+        aria-label="スキャン結果"
+      >
+        <div id="results-container" class="results__list"></div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

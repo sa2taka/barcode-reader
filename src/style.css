@@ -227,27 +227,42 @@ body {
   }
 }
 
-/* ===== Loading ===== */
+/* ===== Skeleton ===== */
 
-.loading {
+.result-card--skeleton {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.75rem;
-  color: var(--text-secondary);
 }
 
-.loading__spinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--border-subtle);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+.skeleton-line {
+  height: 1em;
+  background: linear-gradient(
+    90deg,
+    var(--border-subtle) 25%,
+    var(--accent-glow) 50%,
+    var(--border-subtle) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 2px;
 }
 
-@keyframes spin {
+.skeleton-line--short {
+  width: 40%;
+}
+
+.skeleton-line--long {
+  height: 1.75rem;
+  width: 80%;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
   to {
-    transform: rotate(360deg);
+    background-position: -200% 0;
   }
 }
 

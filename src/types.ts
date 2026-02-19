@@ -12,6 +12,7 @@ export interface DropZoneCallbacks {
 }
 
 export interface ResultDisplayApi {
+  showSkeleton: () => void;
   showResult: (result: ScanResult) => void;
   clear: () => void;
 }

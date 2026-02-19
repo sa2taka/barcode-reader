@@ -82,11 +82,38 @@ function createResultCard(result: ScanResult): HTMLElement {
   return card;
 }
 
+function createSkeleton(): HTMLElement {
+  const card = document.createElement("article");
+  card.className = "result-card result-card--skeleton";
+
+  const badgeLine = document.createElement("div");
+  badgeLine.className = "skeleton-line skeleton-line--short";
+  card.appendChild(badgeLine);
+
+  const valueLine = document.createElement("div");
+  valueLine.className = "skeleton-line skeleton-line--long";
+  card.appendChild(valueLine);
+
+  const btnLine = document.createElement("div");
+  btnLine.className = "skeleton-line skeleton-line--short";
+  card.appendChild(btnLine);
+
+  return card;
+}
+
 export function initResultDisplay(): ResultDisplayApi {
   const resultsSection = document.getElementById("results");
   const container = document.getElementById("results-container");
 
   return {
+    showSkeleton(): void {
+      if (!resultsSection || !container) return;
+
+      container.textContent = "";
+      resultsSection.hidden = false;
+      container.appendChild(createSkeleton());
+    },
+
     showResult(result: ScanResult): void {
       if (!resultsSection || !container) return;
 

@@ -30,6 +30,7 @@ function hideError(): void {
 async function handleImageReady(imageData: ImageData): Promise<void> {
   const currentGeneration = ++scanGeneration;
 
+  resultDisplay.clear();
   hideError();
   showLoading(true);
 

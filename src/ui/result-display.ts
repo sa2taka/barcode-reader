@@ -1,19 +1,10 @@
 import type { ScanResult, ResultDisplayApi } from "../types";
 
-const MAX_CARDS = 10;
 const COPY_FEEDBACK_MS = 2000;
 
 function formatOrientation(orientation: ScanResult["orientation"]): string {
   if (orientation === 0) return "";
   return `${orientation}° 回転`;
-}
-
-function formatTimestamp(date: Date): string {
-  return date.toLocaleTimeString("ja-JP", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  });
 }
 
 function createBadge(text: string, modifier: string): HTMLSpanElement {
@@ -75,11 +66,6 @@ function createResultCard(result: ScanResult): HTMLElement {
 
   card.appendChild(createBadges(result));
 
-  const timestamp = document.createElement("time");
-  timestamp.className = "result-card__time";
-  timestamp.textContent = formatTimestamp(result.scannedAt);
-  card.appendChild(timestamp);
-
   const value = document.createElement("p");
   value.className = "result-card__value";
   value.textContent = result.value;
@@ -96,12 +82,6 @@ function createResultCard(result: ScanResult): HTMLElement {
   return card;
 }
 
-function trimExcessCards(container: HTMLElement): void {
-  while (container.children.length > MAX_CARDS) {
-    container.lastElementChild?.remove();
-  }
-}
-
 export function initResultDisplay(): ResultDisplayApi {
   const resultsSection = document.getElementById("results");
   const container = document.getElementById("results-container");
@@ -110,10 +90,9 @@ export function initResultDisplay(): ResultDisplayApi {
     showResult(result: ScanResult): void {
       if (!resultsSection || !container) return;
 
+      container.textContent = "";
       resultsSection.hidden = false;
-      const card = createResultCard(result);
-      container.prepend(card);
-      trimExcessCards(container);
+      container.appendChild(createResultCard(result));
     },
 
     clear(): void {

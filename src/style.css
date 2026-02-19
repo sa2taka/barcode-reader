@@ -109,13 +109,6 @@ body {
     0 0 40px var(--accent-glow);
 }
 
-.header__subtitle {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  color: var(--text-secondary);
-  margin-top: 0.5rem;
-}
 
 /* ===== Controls ===== */
 
